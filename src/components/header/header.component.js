@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
@@ -21,6 +22,7 @@ const Header = ({ currentUser }) => {
         <Link className='option' to='/contact'>
           CONTACT
         </Link>
+
         {currentUser ? (
           <div className='option' onClick={() => auth.signOut()}>
             SIGN OUT
@@ -35,4 +37,8 @@ const Header = ({ currentUser }) => {
   )
 }
 
-export default Header
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header)
